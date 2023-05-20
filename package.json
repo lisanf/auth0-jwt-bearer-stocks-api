@@ -1,0 +1,29 @@
+{
+  "name": "auth0-json-web-token",
+  "version": "1.0.0",
+  "description": "Auth0 JSON Web Token (JWT) is a secure and efficient way to exchange information between parties for authentication and authorization. It consists of three parts: the header, the payload, and the signature.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisanf/auth0-json-web-token.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisanf/auth0-json-web-token/issues"
+  },
+  "homepage": "https://github.com/lisanf/auth0-json-web-token#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
+
+
