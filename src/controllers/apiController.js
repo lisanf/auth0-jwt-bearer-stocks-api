@@ -1,4 +1,6 @@
-// Controlador para la ruta raíz '/'
+const path = require('path');
+
+// Controlador para la API
 const apiController = (req, res) => {
     res.json({ message: 'Hello, world! Welcome to my API 🚀' });
   };

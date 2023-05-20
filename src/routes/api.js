@@ -1,6 +1,8 @@
 // ************ Require's ************
 const express = require('express');
 const router = express.Router();
+const path = require("path");
+
 const apiController = require('../controllers/apiController');
 
 /**
@@ -30,8 +32,6 @@ const apiController = require('../controllers/apiController');
  *                   description: Mensaje de ejemplo.
  */
 router.get('/hello-world', apiController);
-
-router.get('/', apiController);
 
 module.exports = router;
 
