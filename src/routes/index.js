@@ -31,6 +31,8 @@ const apiController = require('../controllers/apiController');
  */
 router.get('/hello-world', apiController);
 
+router.get('/', apiController);
+
 module.exports = router;
 
 
