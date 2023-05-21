@@ -14,6 +14,20 @@ const swaggerOptions = {
         url: 'http://localhost:3000/api', // Reemplaza con la URL base de tu API
       },
     ],
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        }
+      },
+    },
+    security: [
+      {
+        BearerAuth: [], // Aplicar Bearer Token a las rutas que lo requieran
+      }
+    ],
   },
   apis: ['./src/routes/*.js'], // Ruta de tus archivos de rutas
 };
@@ -22,4 +36,11 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
 module.exports = swaggerSpec;
+
+
+
+
+
+
+
 

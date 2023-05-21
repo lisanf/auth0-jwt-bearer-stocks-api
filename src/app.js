@@ -1,11 +1,13 @@
 const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swaggerConfig');
+const jwtCheck = require('./auth/jwtConfig')
 const path = require('path');
 
 
 const mainRouter = require('./routes/main');
-const apiRouter = require('./routes/api');
+const apiPublicRouter = require('./routes/apiPublic');
+const apiPrivateRouter = require('./routes/apiPrivate');
 
 const app = express();
 
@@ -20,11 +22,15 @@ app.set('views', path.join(__dirname, 'views'));
 // Home route
 app.use('/', mainRouter);
 
-// API route
-app.use('/api', apiRouter);
+// API Public route
+app.use('/api/public', apiPublicRouter);
+
+// API Private route
+app.use('/api/private', jwtCheck, apiPrivateRouter);
 
 // Swagger route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 // Port cfg
 const port = 3000;
