@@ -58,7 +58,68 @@ const apiPrivateController = {
         console.log('Error:', error.message);
         res.status(500).json({ error: 'An error occurred' });
       });
-  }
+  },
+
+  companyProfileMetrics: (req, res) => {
+    const symbol = req.params.symbol;
+    const apiKey = req.headers['x-api-key'];
+    
+    const url = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`;
+    
+    fetch(url, {
+      headers: {
+        Authorization: 'Bearer TOKEN' // Reemplaza 'TOKEN' con tu token JWT
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Status: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(companyProfile => {
+        res.json({
+          MarketCapitalization: companyProfile.MarketCapitalization,
+          EBITDA: companyProfile.EBITDA,
+          PERatio: companyProfile.PERatio,
+          PEGRatio: companyProfile.PEGRatio,
+          BookValue: companyProfile.BookValue
+        });
+      })
+      .catch(error => {
+        console.log('Error:', error.message);
+        res.status(500).json({ error: 'An error occurred' });
+      });
+  },
+  
+  companyProfileDividends: (req, res) => {
+    const symbol = req.params.symbol;
+    const apiKey = req.headers['x-api-key'];
+    
+    const url = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`;
+    
+    fetch(url, {
+      headers: {
+        Authorization: 'Bearer TOKEN' // Reemplaza 'TOKEN' con tu token JWT
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Status: ' + response.status);
+        }
+        return response.json();
+      })
+      .then(companyProfile => {
+        res.json({
+          DividendPerShare: companyProfile.DividendPerShare,
+          DividendYield: companyProfile.DividendYield
+        });
+      })
+      .catch(error => {
+        console.log('Error:', error.message);
+        res.status(500).json({ error: 'An error occurred' });
+      });
+  } 
 };
 
 module.exports = apiPrivateController;

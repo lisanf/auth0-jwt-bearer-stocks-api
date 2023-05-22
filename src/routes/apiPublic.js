@@ -8,30 +8,59 @@ const apiPublicController = require('../controllers/apiPublicController');
 /**
  * @swagger
  * tags:
- *   name: Ejemplo
- *   description: Endpoints de ejemplo
+ *   name: Symbol Search
+ *   description: Search for Ticker or Symbol by keyword
  */
 
 /**
  * @swagger
- * /public/hello-world:
+ * /public/symbol-search:
  *   get:
- *     summary: Hello, world! Welcome to my API 🚀
- *     tags: [Ejemplo]
- *     description: Retorna un ejemplo.
+ *     summary: Search for Ticker or Symbol by keyword
+ *     tags: [Symbol Search]
+ *     description: |
+ *       Returns the search results for Ticker or Symbol based on a keyword search.
+ *       Define the properties of search results here based on the response from the API.
+ *       For example:
+ *       - Symbol: Company symbol
+ *       - Name: Company name
+ *       - Exchange: Stock exchange
+ *     parameters:
+ *       - in: query
+ *         name: keywords
+ *         required: true
+ *         description: Keyword for symbol search
+ *         schema:
+ *           type: string
  *     responses:
  *       '200':
- *         description: Respuesta exitosa.
+ *         description: Successful response
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 message:
+ *                 Symbol:
  *                   type: string
- *                   description: Mensaje de ejemplo.
+ *                   description: Company symbol
+ *                 Name:
+ *                   type: string
+ *                   description: Company name
+ *                 Exchange:
+ *                   type: string
+ *                   description: Stock exchange
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Error message
  *     security: []
  */
-router.get('/hello-world', apiPublicController.helloWorld);
+router.get('/symbol-search', apiPublicController.symbolSearch);
 
 module.exports = router;
